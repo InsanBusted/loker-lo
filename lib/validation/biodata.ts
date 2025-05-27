@@ -2,16 +2,19 @@ import { z } from "zod";
 
 export const BiodataSchema = z
   .object({
-    userId: z.string().uuid(),
     documentUrl: z.string().url("URL dokumen tidak valid"),
-    kategoriId: z.string().uuid(),
-    tahunLulus: z.union([z.string().min(1), z.literal("")]).optional(), // akan dikonversi ke number jika perlu
-    namaPerusahaan: z.string().optional(),
-    lowonganId: z.string().uuid(),
-    kategoriNama: z.enum(["mahasiswa", "alumni", "perusahaan"]), // input tambahan frontend
+    imgProfile: z.string().url("URL profil tidak valid"),
+    deskripsi: z.string(),
+    kategori: z.enum(["mahasiswa", "alumni", "perusahaan"]),
+    bidangId: z.number().int().positive(),
+    tahunLulus: z.union([z.string().min(1), z.literal("")]).optional(),
+    namaPerusahaan: z.string().optional().default(""),
   })
   .superRefine((data, ctx) => {
-    if (data.kategoriNama === "mahasiswa" && !data.tahunLulus) {
+    if (
+      data.kategori === "mahasiswa" &&
+      (!data.tahunLulus || data.tahunLulus === "")
+    ) {
       ctx.addIssue({
         path: ["tahunLulus"],
         code: z.ZodIssueCode.custom,
@@ -19,7 +22,10 @@ export const BiodataSchema = z
       });
     }
 
-    if (data.kategoriNama === "perusahaan" && !data.namaPerusahaan) {
+    if (
+      data.kategori === "perusahaan" &&
+      (!data.namaPerusahaan || data.namaPerusahaan === "")
+    ) {
       ctx.addIssue({
         path: ["namaPerusahaan"],
         code: z.ZodIssueCode.custom,

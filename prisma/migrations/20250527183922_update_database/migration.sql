@@ -13,7 +13,6 @@ CREATE TABLE "User" (
     "nama" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "role" "Role" NOT NULL DEFAULT 'USER',
-    "password" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -25,6 +24,8 @@ CREATE TABLE "Biodata" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "documentUrl" TEXT NOT NULL,
+    "imgProfile" TEXT NOT NULL,
+    "deskripsi" TEXT NOT NULL,
     "kategori" "KategoriEnum" NOT NULL,
     "bidangId" TEXT NOT NULL,
     "tahunLulus" INTEGER,

@@ -1,11 +1,12 @@
-generator client {
-  provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
+datasource db {
+  provider  = "postgres"
+  url       = env("AUTH_POSTGRES_PRISMA_URL")
+  directUrl = env("AUTH_POSTGRES_URL_NON_POOLING")
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 enum Role {
@@ -20,7 +21,7 @@ model User {
   nama      String
   email     String    @unique
   role      Role      @default(USER)
-  password  String
+  // password  String
   biodata   Biodata?
   proposals Proposal[]
   lowongans Lowongan[]  // user bisa upload lowongan
@@ -39,14 +40,15 @@ model Biodata {
   user            User            @relation(fields: [userId], references: [id])
   userId          String          @unique
   documentUrl     String
+  imgProfile      String
+  deskripsi       String
   kategori        KategoriEnum
   bidang          Bidang          @relation(fields: [bidangId], references: [id])
-  bidangId        String
+  bidangId        Int
   tahunLulus      Int?
   namaPerusahaan  String?
   skills          BiodataSkill[]
 }
-
 // SKILL
 model Skill {
   id      String          @id @default(uuid())
@@ -72,10 +74,8 @@ model Lowongan {
   userId         String
   namaPerusahaan String
   deskripsi      String
-  kategori       Kategori   @relation(fields: [kategoriId], references: [id])  // kategori lowongan (web developer, dll)
-  kategoriId     String
-  bidang         Bidang     @relation(fields: [bidangId], references: [id])   // bidang lowongan
-  bidangId       String
+  bidang          Bidang          @relation(fields: [bidangId], references: [id])
+  bidangId        Int
   lokasi         String
   gaji           String
   benefit        String[]
@@ -84,19 +84,12 @@ model Lowongan {
   proposals      Proposal[]
 }
 
-// BIDANG
 model Bidang {
-  id        String     @id @default(uuid())
+  id        Int       @id @default(autoincrement())
+  slug      String    @unique
   nama      String
   biodata   Biodata[]
   lowongan  Lowongan[]
-}
-
-// KATEGORI
-model Kategori {
-  id       String     @id @default(uuid())
-  nama     String
-  lowongan Lowongan[]
 }
 
 // PROPOSAL
