@@ -52,6 +52,7 @@ model Biodata {
 // SKILL
 model Skill {
   id      String          @id @default(uuid())
+  slug    String    @unique
   nama    String
   biodata BiodataSkill[]
 }
