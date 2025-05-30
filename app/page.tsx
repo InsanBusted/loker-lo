@@ -4,7 +4,8 @@ import Jumbotron from "@/components/Home/Jumbotron/page";
 import Service from "@/components/Home/Services/page";
 import Footer from "@/components/ui/Footer/page";
 
-export default function Home() {
+export default async function Home() {
+
   return (
     <div>
       <Header />

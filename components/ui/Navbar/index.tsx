@@ -110,7 +110,7 @@ const Nav = () => {
             );
           })}
           <Button className="font-semibold text-white">
-            <Link href="/regist"> Daftar</Link>
+            <Link href="/sign-up">Daftar</Link>
           </Button>
         </div>
 
