@@ -14,7 +14,7 @@ const Hero = () => {
             Build rewarding relationships in the world&apos;s Work Marketplace.
             Your home for the work you want.
           </p>
-          <Button className=" bg-[var(--color-lokerlo)] hover:bg-black text-white  text-sm px-7 py-5 rounded-lg cursor-pointer">
+          <Button className="bg-black text-white  text-sm px-7 py-5 rounded-lg cursor-pointer">
             Sign up
           </Button>
         </div>

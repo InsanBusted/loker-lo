@@ -70,7 +70,7 @@ const MobileNav = ({ links, onClose }: MobileMenuProps) => {
           </li>
         ))}
       </ul>
-      <Button className="font-semibold bg-[var(--color-lokerlo)] text-white w-full mt-3">
+      <Button className="font-semibold text-white w-full mt-3">
         <Link href="/regist"> Daftar</Link>
       </Button>
     </div>

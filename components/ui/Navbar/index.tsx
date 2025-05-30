@@ -109,7 +109,7 @@ const Nav = () => {
               </Link>
             );
           })}
-          <Button className="font-semibold bg-[var(--color-lokerlo)] text-white">
+          <Button className="font-semibold text-white">
             <Link href="/regist"> Daftar</Link>
           </Button>
         </div>

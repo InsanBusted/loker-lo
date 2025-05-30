@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Jumbotron = () => {
   return (
-    <div className="flex items-center justify-center  min-h-screen px-4 md:px-8">
+    <div className="flex justify-center  min-h-screen px-4 md:pt-[5rem] xl:pt-[13rem] pt-[55rem]  md:px-8">
       <div className="px-4 md:px-8 py-10">
         <div className="max-w-5xl w-full bg-[#f9f9f9] rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-lg transform transition duration-300 ease-in-out hover:-translate-y-1">
           {/* Left Content */}
