@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 
 interface Props {
-  params: { lowonganID: string };
+  params: Promise<{ lowonganID: string }>;
 }
 
 const DetailLowonganByID = async ({ params }: Props) => {
@@ -19,11 +19,19 @@ const DetailLowonganByID = async ({ params }: Props) => {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">{lowongan.namaPerusahaan}</h1>
-      <p className="text-sm mb-2 text-gray-600">Bidang: {lowongan.bidang.nama}</p>
+      <p className="text-sm mb-2 text-gray-600">
+        Bidang: {lowongan.bidang.nama}
+      </p>
       <p className="mb-4">{lowongan.deskripsi}</p>
-      <p className="mb-2"><strong>Lokasi:</strong> {lowongan.lokasi}</p>
-      <p className="mb-2"><strong>Gaji:</strong> {lowongan.gaji}</p>
-      <p className="mb-2"><strong>Benefit:</strong> {lowongan.benefit.join(", ")}</p>
+      <p className="mb-2">
+        <strong>Lokasi:</strong> {lowongan.lokasi}
+      </p>
+      <p className="mb-2">
+        <strong>Gaji:</strong> {lowongan.gaji}
+      </p>
+      <p className="mb-2">
+        <strong>Benefit:</strong> {lowongan.benefit.join(", ")}
+      </p>
       <p className="text-xs text-gray-500">Posted by: {lowongan.user.nama}</p>
     </div>
   );
