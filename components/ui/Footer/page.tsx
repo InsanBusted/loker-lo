@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className=" w-[80vw] m-auto ">
+    <div className=" w-[80vw] m-auto pb-[3rem]">
       <div className="w-full bg-black text-white p-6 rounded-2xl shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Section 1 - Brand */}
@@ -46,7 +46,7 @@ const Footer = () => {
             <h2 className="text-lg font-semibold mb-2">Kontak</h2>
             <p className="text-sm text-gray-300">Citayam, Depok, Indonesia</p>
             <p className="text-sm text-gray-300">Email: info@bustech.site</p>
-            <p className="text-sm text-gray-300">WhatsApp: +62 812-3456-7890</p>
+            <p className="text-sm text-gray-300">WhatsApp: +62 896-3554-6721</p>
           </div>
         </div>
 

@@ -16,7 +16,7 @@ const Hero = () => {
             Your home for the work you want.
           </p>
           <Button className="bg-black text-white  text-sm px-7 py-5 rounded-lg cursor-pointer">
-            <Link href="/jobs">Search Job</Link>
+            <Link href="/lowongan">Search Job</Link>
           </Button>
         </div>
 

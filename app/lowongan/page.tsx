@@ -1,7 +1,10 @@
 import Header from "@/components/Header/page";
+import Banner from "@/components/SearchJobs/Banner/page";
 import ExploreJobs from "@/components/SearchJobs/ExploreJobs/page";
 import Hero from "@/components/SearchJobs/Hero/page";
 import Footer from "@/components/ui/Footer/page";
+import Image from "next/image";
+import Link from "next/link";
 
 const Search = () => {
   return (
@@ -11,7 +14,13 @@ const Search = () => {
         <section>
           <Hero />
         </section>
-        <section className="h-[100vh] mt-10">
+
+        <section>
+          <Banner />
+        </section>
+
+        {/* ExploreJobs section (berisi pencarian dinamis) */}
+        <section className="mb-[5rem]">
           <ExploreJobs />
         </section>
       </main>
