@@ -14,7 +14,7 @@ const LowonganSchema = z.object({
 
 export async function GET(
   _req: Request,
-  { params }: { params: { userID: string } }
+  { params }: { params: Promise<{ userID: string }> }
 ) {
   const { userID } = await params;
 
