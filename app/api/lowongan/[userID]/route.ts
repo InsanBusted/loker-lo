@@ -43,7 +43,7 @@ export async function GET(
 
 export async function POST(
   req: Request,
-  { params }: { params: { userID: string } }
+  { params }: { params: Promise<{ userID: string }> }
 ) {
   const { userID } = await params;
 
@@ -94,7 +94,7 @@ export async function POST(
 
 export async function PUT(
   req: Request,
-  { params }: { params: { userID: string } }
+  { params }: { params: Promise<{ userID: string }> }
 ) {
   const { userID } = await params;
 
