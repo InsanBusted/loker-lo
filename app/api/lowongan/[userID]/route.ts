@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 
@@ -156,9 +156,11 @@ export async function PUT(
   }
 }
 
-
-export async function DELETE(req: NextRequest, context: { params: { userID: string } }) {
-  const { userID } = context.params;
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ userID: string }> }
+) {
+  const { userID } = await params;
 
   if (!userID) {
     return NextResponse.json({ error: "Missing userID" }, { status: 400 });
@@ -167,6 +169,7 @@ export async function DELETE(req: NextRequest, context: { params: { userID: stri
   try {
     const body = await req.json();
 
+    // Pastikan body adalah objek dengan properti 'id' bertipe string
     if (
       !body ||
       typeof body !== "object" ||
@@ -215,4 +218,3 @@ export async function DELETE(req: NextRequest, context: { params: { userID: stri
     );
   }
 }
-
