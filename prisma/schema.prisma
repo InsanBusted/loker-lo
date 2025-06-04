@@ -71,12 +71,13 @@ model BiodataSkill {
 // LOWONGAN
 model Lowongan {
   id             String     @id @default(uuid())
-  user           User       @relation(fields: [userId], references: [id]) // siapa yang upload lowongan
+  slug           String     @unique
+  user           User       @relation(fields: [userId], references: [id])
   userId         String
   namaPerusahaan String
   deskripsi      String
-  bidang          Bidang          @relation(fields: [bidangId], references: [id])
-  bidangId        Int
+  bidang         Bidang     @relation(fields: [bidangId], references: [id])
+  bidangId       Int
   lokasi         String
   gaji           String
   benefit        String[]

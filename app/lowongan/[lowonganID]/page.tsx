@@ -1,40 +1,25 @@
-import prisma from "@/lib/prisma";
+import DetailLowonganBySlug from "@/components/DetailLowongan/page";
+import Header from "@/components/Header/page";
+import Footer from "@/components/ui/Footer/page";
+import { FC } from "react";
 
-interface Props {
-  params: Promise<{ lowonganID: string }>;
+interface PageProps {
+  params: {
+    lowonganID: string;
+  };
 }
 
-const DetailLowonganByID = async ({ params }: Props) => {
-  const { lowonganID } = await params;
-
-  const lowongan = await prisma.lowongan.findUnique({
-    where: { id: lowonganID },
-    include: { bidang: true, user: true },
-  });
-
-  if (!lowongan) {
-    return <div>Lowongan tidak ditemukan.</div>;
-  }
+const Page: FC<PageProps> = ({ params }) => {
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">{lowongan.namaPerusahaan}</h1>
-      <p className="text-sm mb-2 text-gray-600">
-        Bidang: {lowongan.bidang.nama}
-      </p>
-      <p className="mb-4">{lowongan.deskripsi}</p>
-      <p className="mb-2">
-        <strong>Lokasi:</strong> {lowongan.lokasi}
-      </p>
-      <p className="mb-2">
-        <strong>Gaji:</strong> {lowongan.gaji}
-      </p>
-      <p className="mb-2">
-        <strong>Benefit:</strong> {lowongan.benefit.join(", ")}
-      </p>
-      <p className="text-xs text-gray-500">Posted by: {lowongan.user.nama}</p>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main>
+        <DetailLowonganBySlug slug={params.lowonganID} />
+      </main>
+      <Footer />
     </div>
   );
 };
 
-export default DetailLowonganByID;
+export default Page;

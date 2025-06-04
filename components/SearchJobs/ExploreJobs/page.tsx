@@ -1,70 +1,55 @@
 "use client";
 
+import React, { useEffect, useState, startTransition } from "react";
 import Link from "next/link";
-import React, { useState, useEffect, useRef } from "react";
-
-interface Bidang {
-  id: number;
-  slug: string;
-  nama: string;
-}
-
-interface Lowongan {
-  id: string;
-  namaPerusahaan: string;
-  deskripsi: string;
-  bidang: Bidang;
-}
+import type { Lowongan, Bidang } from "@prisma/client";
+import { searchLowongan } from "@/lib/actions/searchLowongan";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const ExploreJobs: React.FC = () => {
   const [search, setSearch] = useState("");
-  const [lowongan, setLowongan] = useState<Lowongan[]>([]);
+  const [lowongan, setLowongan] = useState<(Lowongan & { bidang: Bidang })[]>(
+    []
+  );
   const [loading, setLoading] = useState(false);
-  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
-  
 
   useEffect(() => {
-    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
-
-    if (!search.trim()) {
-      setLowongan([]);
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-
-    debounceTimeout.current = setTimeout(async () => {
-      try {
-        const res = await fetch(
-          `/api/lowongan/search?q=${encodeURIComponent(search.trim())}`
-        );
-        if (!res.ok) {
-          console.error("Fetch error", await res.text());
-          setLowongan([]);
-          setLoading(false);
-          return;
-        }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const data: any = await res.json();
-        setLowongan(data.data);
-      } catch (error) {
-        console.error("Fetch error", error);
+    const fetchJobs = async () => {
+      if (!search.trim()) {
         setLowongan([]);
-      } finally {
         setLoading(false);
+        return;
       }
-    }, 200); // delay 400ms
 
-    return () => {
-      if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+      setLoading(true);
+      startTransition(async () => {
+        try {
+          const results = await searchLowongan(search.trim());
+          setLowongan(results);
+        } catch (error) {
+          console.error("Error searching jobs:", error);
+          setLowongan([]);
+        } finally {
+          setLoading(false);
+        }
+      });
     };
+
+    fetchJobs();
   }, [search]);
 
   return (
     <section className="w-full px-10 xl:pt-40 pt-35 bg-white">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
-        <div className="max-w-xl w-full">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+        <div className="">
           <h1 className="text-2xl font-semibold mb-6">
             Explore remote development & IT jobs
           </h1>
@@ -83,22 +68,24 @@ const ExploreJobs: React.FC = () => {
             <p>No jobs found for &quot;{search.trim()}&quot;</p>
           )}
 
-          <ul>
+          <div className="flex flex-wrap gap-5">
             {lowongan.map((job) => (
-              <li
-                key={job.id}
-                className="border-b py-3 hover:bg-gray-100 transition cursor-pointer"
-              >
-                <Link href={`/lowongan/${job.id}`}>
-                    <h2 className="text-lg font-semibold">
-                      {job.namaPerusahaan}
-                    </h2>
-                    <p className="text-sm text-gray-600">{job.bidang.nama}</p>
-                    <p>{job.deskripsi}</p>
-                </Link>
-              </li>
+              <Link key={job.id} href={`/lowongan/${job.slug}`}>
+                <Card className="w-[20rem]">
+                  <CardHeader>
+                    <CardTitle>{job.namaPerusahaan}</CardTitle>
+                    <CardDescription>{job.lokasi}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="font-light">{job.deskripsi}</p>
+                  </CardContent>
+                  <CardFooter>
+                    <p>{job.bidang.nama}</p>
+                  </CardFooter>
+                </Card>
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </section>

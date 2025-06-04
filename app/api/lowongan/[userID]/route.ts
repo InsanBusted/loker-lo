@@ -5,6 +5,7 @@ import { z } from "zod";
 // Validasi schema untuk Lowongan
 const LowonganSchema = z.object({
   namaPerusahaan: z.string().min(1),
+  slug: z.string().min(1),
   deskripsi: z.string().min(1),
   bidangId: z.number(),
   lokasi: z.string().min(1),
@@ -75,6 +76,7 @@ export async function POST(
         userId: userID,
         namaPerusahaan: parse.data.namaPerusahaan,
         deskripsi: parse.data.deskripsi,
+        slug: parse.data.slug,
         bidangId: parse.data.bidangId,
         lokasi: parse.data.lokasi,
         gaji: parse.data.gaji,
