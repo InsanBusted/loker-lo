@@ -1,21 +1,15 @@
 import DetailLowonganBySlug from "@/components/DetailLowongan/page";
 import Header from "@/components/Header/page";
 import Footer from "@/components/ui/Footer/page";
-import { FC } from "react";
 
-interface PageProps {
-  params: {
-    lowonganID: string;
-  };
-}
 
-const Page: FC<PageProps> = ({ params }) => {
-
+const Page = async ({ params }: { params: Promise<{ lowonganID: string }> }) => {
+  const lowonganID  = (await params).lowonganID;
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main>
-        <DetailLowonganBySlug slug={params.lowonganID} />
+        <DetailLowonganBySlug slug={lowonganID} />
       </main>
       <Footer />
     </div>

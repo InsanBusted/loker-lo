@@ -6,7 +6,6 @@ import type { Lowongan, Bidang } from "@prisma/client";
 import { searchLowongan } from "@/lib/actions/searchLowongan";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
