@@ -38,5 +38,6 @@ export const config = {
      * Contoh: kecualikan /api, /_next/static, /_next/image, favicon.ico
      */
     "/((?!_next/static|_next/image|favicon.ico).*)",
+    "/api/(.*)",
   ],
 };

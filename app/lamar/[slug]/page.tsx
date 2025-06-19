@@ -21,6 +21,8 @@ const LamarLowongan = async ({ params }: Props) => {
   if (!lowongan) {
     return <p className="text-center mt-10">Lowongan tidak ditemukan.</p>;
   }
+
+  
   return (
     <div className="flex flex-col min-h-screen">
       <section className="pt-[10rem] mx-auto">

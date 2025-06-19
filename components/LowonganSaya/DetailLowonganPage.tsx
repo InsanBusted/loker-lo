@@ -1,16 +1,15 @@
 import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
-import Link from "next/link";
 import { Building2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import LamarSekarangButton from "@/components/Lowongan/ButtonLamar";
+import Link from "next/link";
 
 export default async function DetailLowonganPage({
   params,
 }: {
-  params: Promise<{ lowonganID: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { lowonganID } = await params;
-  const slug = lowonganID;
+  const { slug } = await params;
 
   const lowongan = await prisma.lowongan.findUnique({
     where: { slug },
@@ -55,10 +54,12 @@ export default async function DetailLowonganPage({
             {lowongan.gaji}
           </div>
 
-          <Link href={`/lamar/${slug}`}>
-            <Button className="w-full mt-4 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition text-sm font-medium cursor-pointer">
-              Lamar Sekarang
-            </Button>
+          <LamarSekarangButton slug={slug} />
+          <Link
+            href={`/lowongan-saya/${slug}/edit`}
+            className="w-full bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition text-sm font-medium cursor-pointer"
+          >
+            Edit Lowongan
           </Link>
 
           <p className="text-xs text-gray-500 pt-4">

@@ -4,7 +4,6 @@ import { currentUser } from "@clerk/nextjs/server";
 import prisma from "../prisma";
 import { lamarSchema } from "../validation/lamar";
 
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function submitLamar(prevState: any, formData: FormData) {
   const clerkUser = await currentUser();
@@ -22,15 +21,13 @@ export async function submitLamar(prevState: any, formData: FormData) {
     return { success: false, error: "User tidak ditemukan di database" };
   }
 
-  // Ambil data dari FormData (kecuali userId)
+  // Ambil data dari FormData
   const rawDataFromForm = {
     lowonganId: formData.get("lowonganId")?.toString() || "",
-    status: formData.get("status")?.toString() || "pending",
     coverLetter: formData.get("coverLetter")?.toString() || "",
     documentUrl: formData.get("documentUrl")?.toString() || "",
   };
 
-  // Validasi data dari form
   const validatedForm = lamarSchema.safeParse(rawDataFromForm);
   if (!validatedForm.success) {
     const errors = validatedForm.error.errors.map((e) => e.message).join(", ");
@@ -38,30 +35,41 @@ export async function submitLamar(prevState: any, formData: FormData) {
   }
 
   try {
-    // Cek apakah sudah pernah melamar
+    const { lowonganId, coverLetter, documentUrl } = validatedForm.data;
+
     const existingProposal = await prisma.proposal.findFirst({
       where: {
         userId: dbUser.id,
-        lowonganId: validatedForm.data.lowonganId,
+        lowonganId,
       },
     });
 
     if (existingProposal) {
-      return {
-        success: false,
-        error: "Kamu sudah melamar ke lowongan ini.",
-      };
+      // EDIT → update existing proposal dan reset status ke pending
+      await prisma.proposal.update({
+        where: { id: existingProposal.id },
+        data: {
+          coverLetter,
+          documentUrl,
+          status: "pending", // reset status
+        },
+      });
+
+      return { success: true, message: "Proposal berhasil diperbarui." };
     }
 
-    // Simpan proposal baru
+    // BUAT BARU
     await prisma.proposal.create({
       data: {
         userId: dbUser.id,
-        ...validatedForm.data,
+        lowonganId,
+        coverLetter,
+        documentUrl,
+        status: "pending", // status awal
       },
     });
 
-    return { success: true };
+    return { success: true, message: "Proposal berhasil dikirim." };
   } catch (error) {
     console.error("Gagal menyimpan proposal:", error);
     return {

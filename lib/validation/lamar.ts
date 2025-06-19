@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const lamarSchema = z.object({
+  id: z.string().optional(),
   userId: z.string().optional(),
   lowonganId: z.string().uuid({
     message: "Lowongan ID tidak valid",

@@ -1,9 +1,9 @@
-// components/ui/MobileMenu.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../button";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 
 interface MobileMenuProps {
   links: {
@@ -16,9 +16,10 @@ interface MobileMenuProps {
 
 const MobileNav = ({ links, onClose }: MobileMenuProps) => {
   const pathname = usePathname();
+  const { user } = useUser();
 
   return (
-    <div className="absolute mt-5 top-16 right-4 z-50 bg-white p-4 rounded-md w-60 md:hidden">
+    <div className="absolute mt-5 top-16 right-4 z-50 bg-white p-4 rounded-md w-60 md:hidden shadow-lg">
       <ul className="flex flex-col gap-2">
         {links.map((link) => (
           <li key={link.path || link.title}>
@@ -70,9 +71,25 @@ const MobileNav = ({ links, onClose }: MobileMenuProps) => {
           </li>
         ))}
       </ul>
-      <Button className="font-semibold text-white w-full mt-3">
-        <Link href="/regist"> Daftar</Link>
-      </Button>
+
+      <SignedOut>
+        <Button className="font-semibold text-white w-full mt-3">
+          <Link href="/sign-up" onClick={onClose}>
+            Login
+          </Link>
+        </Button>
+      </SignedOut>
+
+      <SignedIn>
+        <div className="flex gap-2 mt-4 items-center">
+          <UserButton afterSignOutUrl="/" />
+          {user?.username && (
+            <span className="text-black font-semibold text-sm">
+              {user.username}
+            </span>
+          )}
+        </div>
+      </SignedIn>
     </div>
   );
 };

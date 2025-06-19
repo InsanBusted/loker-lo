@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 export default async function DetailLowonganPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lowonganID: string }>;
 }) {
-  const { slug } = await params;
+  const { lowonganID } = await params;
+  const slug = lowonganID;
 
   const lowongan = await prisma.lowongan.findUnique({
     where: { slug },
@@ -26,7 +27,7 @@ export default async function DetailLowonganPage({
   if (!lowongan) return notFound();
 
   return (
-    <div className="w-[80vw] mx-auto py-24 px-6 pt-[10rem] text-gray-800">
+    <div className="w-[80vw] mx-auto px-6 mt-[10rem] text-gray-800">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* KIRI: Info Umum */}
         <div className="lg:col-span-1 bg-white shadow-xl rounded-2xl p-6 space-y-4 h-fit">

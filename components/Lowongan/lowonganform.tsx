@@ -69,7 +69,7 @@ export default function LowonganForm({
       alert(result.error || "Gagal menyimpan data.");
     } else {
       alert("Berhasil disimpan!");
-      router.refresh();
+      router.push("/lowongan-saya");
     }
 
     setIsSubmitting(false);

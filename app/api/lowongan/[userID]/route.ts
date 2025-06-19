@@ -121,7 +121,7 @@ export async function POST(
     }
 
     // Slug otomatis dari nama perusahaan
-    const slug = slugify(parse.data.namaPerusahaan, { lower: true });
+    const slug = slugify(parse.data.namaLowongan, { lower: true });
 
     const existing = await prisma.lowongan.findUnique({ where: { slug } });
     if (existing) {
@@ -225,8 +225,8 @@ export async function PUT(
 
     // Periksa slug jika nama perusahaan diubah
     let slug: string | undefined;
-    if (namaPerusahaan && namaPerusahaan !== lowongan.namaPerusahaan) {
-      slug = slugify(namaPerusahaan, { lower: true });
+    if (rest.namaLowongan && rest.namaLowongan !== lowongan.namaLowongan) {
+      slug = slugify(rest.namaLowongan, { lower: true });
       const existingSlug = await prisma.lowongan.findUnique({
         where: { slug },
       });
