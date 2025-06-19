@@ -50,6 +50,7 @@ export async function getUserBiodataSlug() {
   } 
 }
 
+
 export async function getBiodata(slug: string) {
   try {
     const biodata = await prisma.biodata.findUnique({
