@@ -1,12 +1,10 @@
 datasource db {
   provider  = "postgres"
-  url       = env("AUTH_POSTGRES_PRISMA_URL")
-  directUrl = env("AUTH_POSTGRES_URL_NON_POOLING")
+  url       = env("DATABASE_URL")
 }
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
 }
 
 enum Role {
@@ -17,7 +15,7 @@ enum Role {
 
 // USER
 model User {
-  id        String    @id @default(uuid())
+  id        String    @id 
   nama      String
   email     String    @unique
   role      Role      @default(USER)
@@ -35,37 +33,36 @@ enum KategoriEnum {
   perusahaan
 }
 
+enum StatusEnum {
+  APPROVED
+  PENDING
+  REJECTED
+}
+
 model Biodata {
-  id              String          @id @default(uuid())
-  user            User            @relation(fields: [userId], references: [id])
-  userId          String          @unique
-  documentUrl     String
-  imgProfile      String
-  deskripsi       String
-  kategori        KategoriEnum
-  bidang          Bidang          @relation(fields: [bidangId], references: [id])
-  bidangId        Int
-  tahunLulus      Int?
-  namaPerusahaan  String?
-  skills          BiodataSkill[]
+  id               String          @id @default(uuid())
+  user             User            @relation(fields: [userId], references: [id])
+  userId           String          @unique
+  namaLengkap      String?
+  slug             String          @unique
+  documentUrl      String?
+  documentPendukung      String?
+  imgProfile       String
+  deskripsi        String
+  kategori         KategoriEnum?
+  status           StatusEnum      @default(PENDING)
+  bidang           Bidang          @relation(fields: [bidangId], references: [id])
+  bidangId         String
+  tahunLulus       Int?
+  namaPerusahaan   String?
+  skills           Skill[]   @relation("BiodataSkills")
 }
 // SKILL
 model Skill {
-  id      String          @id @default(uuid())
-  slug    String    @unique
-  nama    String
-  biodata BiodataSkill[]
-}
-
-// TABEL PIVOT BIODATA <-> SKILL
-model BiodataSkill {
-  biodataId String
-  skillId   String
-
-  biodata   Biodata @relation(fields: [biodataId], references: [id])
-  skill     Skill   @relation(fields: [skillId], references: [id])
-
-  @@id([biodataId, skillId])
+  id        Int       @id @default(autoincrement())
+  slug      String    @unique
+  nama      String
+  biodata   Biodata[] @relation("BiodataSkills")
 }
 
 // LOWONGAN
@@ -75,19 +72,27 @@ model Lowongan {
   user           User       @relation(fields: [userId], references: [id])
   userId         String
   namaPerusahaan String
+  namaLowongan   String
   deskripsi      String
+
   bidang         Bidang     @relation(fields: [bidangId], references: [id])
-  bidangId       Int
+  bidangId       String
   lokasi         String
   gaji           String
   benefit        String[]
+
+  kualifikasi        String[]   @default([])
+  tugasTanggungJawab String[]   @default([])
+  kualifikasiTambahan String[]  @default([])
+
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
   proposals      Proposal[]
 }
 
+
 model Bidang {
-  id        Int       @id @default(autoincrement())
+  id        String       @id @default(uuid())
   slug      String    @unique
   nama      String
   biodata   Biodata[]
@@ -103,28 +108,14 @@ model Proposal {
   lowonganId  String
   coverLetter String
   documentUrl String
-  pelamar     Pelamar?
-  statusProposal StatusProposal?
-}
-
-// PELAMAR
-model Pelamar {
-  id            String          @id @default(uuid())
-  status        PelamarStatus
-  proposal      Proposal        @relation(fields: [proposalId], references: [id])
-  proposalId    String          @unique
-}
-
-// STATUS PROPOSAL (status progres proposal)
-model StatusProposal {
-  id          String    @id @default(uuid())
-  proposal    Proposal  @relation(fields: [proposalId], references: [id])
-  proposalId  String    @unique
-  status      PelamarStatus
+  status      PelamarStatus @default(pending)
 }
 
 enum PelamarStatus {
+  pending
   review
   tolak
   terima
 }
+
+

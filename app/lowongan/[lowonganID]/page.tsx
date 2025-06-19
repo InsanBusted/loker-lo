@@ -1,19 +1,13 @@
-import DetailLowonganBySlug from "@/components/DetailLowongan/page";
-import Header from "@/components/Header/page";
-import Footer from "@/components/ui/Footer/page";
+import DetailLowonganPage from "./DetailLowonganPage";
 
+type Props = { params: Promise<{ lowonganID: string }> };
 
-const Page = async ({ params }: { params: Promise<{ lowonganID: string }> }) => {
-  const lowonganID  = (await params).lowonganID;
+const page = async ({ params }: Props) => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <main>
-        <DetailLowonganBySlug slug={lowonganID} />
-      </main>
-      <Footer />
+      <DetailLowonganPage params={params} />
     </div>
   );
 };
 
-export default Page;
+export default page;

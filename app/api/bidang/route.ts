@@ -34,14 +34,9 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
-  try {
-    const bidangList = await prisma.bidang.findMany({
-      orderBy: { nama: "asc" },
-    });
-
-    return NextResponse.json(bidangList);
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
-  }
+  const data = await prisma.bidang.findMany({
+    orderBy: { nama: "asc" },
+    select: { id: true, nama: true },
+  });
+  return NextResponse.json(data);
 }

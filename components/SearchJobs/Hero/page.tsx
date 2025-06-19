@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -15,9 +13,6 @@ const Hero = () => {
             Build rewarding relationships in the world&apos;s Work Marketplace.
             Your home for the work you want.
           </p>
-          <Button className="bg-black text-white  text-sm px-7 py-5 rounded-lg cursor-pointer">
-            <Link href="/lowongan">Search Job</Link>
-          </Button>
         </div>
 
         {/* Kanan: Gambar */}

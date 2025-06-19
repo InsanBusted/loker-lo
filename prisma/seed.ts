@@ -1,37 +1,51 @@
 import prisma from "@/lib/prisma";
 
-
 async function main() {
-  const bidangData = [
-    { slug: "mobile-development", nama: "Mobile Development" },
-    { slug: "data-science", nama: "Data Science" },
-    { slug: "machine-learning", nama: "Machine Learning" },
-    { slug: "cloud-computing", nama: "Cloud Computing" },
-    { slug: "cyber-security", nama: "Cyber Security" },
-    { slug: "devops", nama: "DevOps" },
-    { slug: "game-development", nama: "Game Development" },
-    { slug: "ui-ux-design", nama: "UI/UX Design" },
-    { slug: "digital-marketing", nama: "Digital Marketing" },
-    { slug: "network-engineering", nama: "Network Engineering" },
-    { slug: "software-testing", nama: "Software Testing" },
-    { slug: "database-administration", nama: "Database Administration" },
-    { slug: "artificial-intelligence", nama: "Artificial Intelligence" },
-    { slug: "embedded-systems", nama: "Embedded Systems" },
-    { slug: "blockchain", nama: "Blockchain" },
-    { slug: "iot", nama: "Internet of Things (IoT)" },
-    { slug: "project-management", nama: "Project Management" },
-    { slug: "technical-writing", nama: "Technical Writing" },
+  const skillData = [
+    // Hard skills
+    { slug: "nextjs", nama: "Next.js" },
+    { slug: "react", nama: "React" },
+    { slug: "laravel", nama: "Laravel" },
+    { slug: "php", nama: "PHP" },
+    { slug: "javascript", nama: "JavaScript" },
+    { slug: "typescript", nama: "TypeScript" },
+    { slug: "nodejs", nama: "Node.js" },
+    { slug: "python", nama: "Python" },
+    { slug: "java", nama: "Java" },
+    { slug: "flutter", nama: "Flutter" },
+    { slug: "dart", nama: "Dart" },
+    { slug: "kotlin", nama: "Kotlin" },
+    { slug: "sql", nama: "SQL" },
+    { slug: "mongodb", nama: "MongoDB" },
+    { slug: "docker", nama: "Docker" },
+    { slug: "kubernetes", nama: "Kubernetes" },
+    { slug: "figma", nama: "Figma" },
+    { slug: "photoshop", nama: "Adobe Photoshop" },
+    { slug: "illustrator", nama: "Adobe Illustrator" },
+    { slug: "aws", nama: "Amazon Web Services (AWS)" },
+    { slug: "gcp", nama: "Google Cloud Platform (GCP)" },
+    { slug: "azure", nama: "Microsoft Azure" },
+
+    // Soft skills
+    { slug: "communication", nama: "Communication" },
+    { slug: "teamwork", nama: "Teamwork" },
+    { slug: "problem-solving", nama: "Problem Solving" },
+    { slug: "adaptability", nama: "Adaptability" },
+    { slug: "leadership", nama: "Leadership" },
+    { slug: "time-management", nama: "Time Management" },
+    { slug: "critical-thinking", nama: "Critical Thinking" },
+    { slug: "creativity", nama: "Creativity" },
+    { slug: "collaboration", nama: "Collaboration" },
+    { slug: "attention-to-detail", nama: "Attention to Detail" },
   ];
 
-  for (const bidang of bidangData) {
-    await prisma.bidang.upsert({
-      where: { slug: bidang.slug },
-      update: {},
-      create: bidang,
+  for (const skill of skillData) {
+    await prisma.skill.create({
+      data: skill,
     });
   }
 
-  console.log("Seed bidang selesai.");
+  console.log("Seed skill selesai.");
 }
 
 main()

@@ -15,6 +15,12 @@ export async function searchLowongan(search: string) {
           },
         },
         {
+          namaLowongan: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
           lokasi: {
             contains: search,
             mode: "insensitive",

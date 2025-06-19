@@ -1,9 +1,14 @@
 "use client";
 
-import Nav from "../ui/Navbar";
+import Nav from "../ui/Navbar/page";
 import { usePathname } from "next/navigation";
 
-const ClientHeader = () => {
+type NavProps = {
+  perusahaanSlug: string | null;
+  biodataSlug: string | null;
+};
+
+const ClientHeader = ({biodataSlug, perusahaanSlug }: NavProps) => {
   const pathname = usePathname();
 
   if (pathname.includes("/sign-in")) return null;
@@ -15,7 +20,7 @@ const ClientHeader = () => {
           <h1 className="font-bold text-[3rem] ">LokerLo</h1>
         </div>
         <div className="z-50">
-          <Nav />
+          <Nav biodataSlug={biodataSlug} perusahaanSlug={perusahaanSlug} />
         </div>
       </header>
     </div>
