@@ -4,9 +4,10 @@ import { getUserBiodataStatus } from "@/lib/actions/checkUserBiodata";
 
 const Page = async () => {
   await getOrCreateUser();
-  const { hasBiodata, userId } = await getUserBiodataStatus();
+  const { hasBiodata, userId, role } = await getUserBiodataStatus();
+  const validRole = role === "ADMIN" || role === "USER" ? role : "USER";
 
-  return <LokerLo hasBiodata={hasBiodata} userId={userId} />;
+  return <LokerLo hasBiodata={hasBiodata} userId={userId} role={validRole} />;
 };
 
 export default Page;

@@ -20,16 +20,17 @@ import { Button } from "../ui/button";
 type Props = {
   hasBiodata: boolean;
   userId: string | null;
+  role: "USER" | "ADMIN";
 };
 
-export default function LokerLo({ hasBiodata, userId }: Props) {
+export default function LokerLo({ hasBiodata, userId, role }: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (!hasBiodata) {
+    if (role !== "ADMIN" && !hasBiodata) {
       setOpen(true);
     }
-  }, [hasBiodata]);
+  }, [hasBiodata, role]);
   return (
     <div>
       <main>

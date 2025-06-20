@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma";
 
 export const getUserBiodataStatus = async () => {
   const { userId } = await auth();
-  if (!userId) return { hasBiodata: false, userId: null };
+  if (!userId) return { hasBiodata: false, userId: null, role: "USER" };
 
   const user = await prisma.user.findUnique({
     where: { id: userId },
@@ -17,5 +17,6 @@ export const getUserBiodataStatus = async () => {
   return {
     hasBiodata: Boolean(user?.biodata),
     userId,
+    role: user?.role ?? "USER",
   };
 };
