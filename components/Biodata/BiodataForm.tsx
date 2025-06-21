@@ -479,7 +479,7 @@ export default function BiodataForm({ skill, bidang, formEdit }: Props) {
                   render={() => (
                     <FormItem>
                       <FormLabel>
-                        Upload Foto Pendukung Warga STT Terpadu Nurul Fikri
+                        Upload Foto Pendukung KTM/transkip nilai
                         <span className="text-red-500">
                           ( Foto / Screenshot )
                         </span>
@@ -530,13 +530,25 @@ export default function BiodataForm({ skill, bidang, formEdit }: Props) {
           <AlertDialogFooter>
             <AlertDialogCancel
               onClick={() => {
-                setAlertOpen(false); // Tutup dialog
                 router.refresh();
-                router.push("/loker-lo");
+                form.reset();
+                setAlertOpen(false);
               }}
             >
-              Tutup
+              Oke
             </AlertDialogCancel>
+
+            {state.success && (
+              <Button
+                onClick={() => {
+                  router.refresh();
+                  form.reset();
+                  setAlertOpen(false);
+                }}
+              >
+                Oke
+              </Button>
+            )}
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Jumbotron = () => {
   return (
@@ -14,7 +15,9 @@ const Jumbotron = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Ready to start?
             </h2>
-            <Button className="mt-4 cursor-pointer">Create profile</Button>
+            <Link href="/sign-in">
+              <Button className="mt-4 cursor-pointer">Create profile</Button>
+            </Link>
           </div>
 
           {/* Right Image */}

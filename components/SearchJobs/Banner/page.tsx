@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const Banner = () => {
@@ -32,15 +31,7 @@ const Banner = () => {
         ))}
       </div>
 
-      {/* Placeholder illustration */}
-      <div className="max-w-md mx-auto">
-        <Image
-          src="/empty-search.svg"
-          fill
-          alt="Search illustration"
-          className="w-full h-auto"
-        />
-      </div>
+     
     </div>
   );
 };

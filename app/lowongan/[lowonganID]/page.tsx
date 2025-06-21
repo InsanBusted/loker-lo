@@ -6,10 +6,10 @@ type Props = { params: Promise<{ lowonganID: string }> };
 const page = async ({ params }: Props) => {
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="mb-[7rem]">
+      <section >
         <Jumbotron link="lowongan" />
       </section>
-      <section>
+      <section className="mb-[5rem]">
         <DetailLowonganPage params={params} />
       </section>
     </div>

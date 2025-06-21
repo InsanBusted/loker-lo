@@ -4,21 +4,17 @@ import Jumbotron from "@/components/Jumbotron/page";
 
 const Tentang = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-
-      <main>
-        <section className="h-[65vh] xl:h-[80vh]">
-          <Jumbotron link="tentang" />
-        </section>
-        <section className="h-[200vh] xl:h-[100vh]">
-          <Detail />
-        </section>
-        <section className="h-[150vh] xl:h-[100vh]">
-          <VisiMisi />
-        </section>
-      </main>
-
-    </div>
+    <main>
+      <section className="h-[65vh] xl:h-[70vh]">
+        <Jumbotron link="tentang" />
+      </section>
+      <section className="h-[200vh] xl:h-[100vh]">
+        <Detail />
+      </section>
+      <section className="h-[150vh] xl:h-[100vh]">
+        <VisiMisi />
+      </section>
+    </main>
   );
 };
 

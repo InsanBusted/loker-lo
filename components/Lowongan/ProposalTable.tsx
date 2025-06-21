@@ -137,7 +137,7 @@ export function ProposalTable({ proposals }: { proposals: Proposal[] }) {
 
       {filteredProposals.length === 0 ? (
         <p className="text-muted-foreground text-center">
-          Tidak ada hasil yang cocok.
+          Kamu Belum Mengirim Lamaran.
         </p>
       ) : (
         <>

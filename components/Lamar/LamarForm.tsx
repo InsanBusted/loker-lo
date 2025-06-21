@@ -115,6 +115,7 @@ const LamarForm = ({ userId, lowonganId, initialData, formEdit }: Props) => {
             render={({ field }) => (
               <div>
                 <FormLabel>Cover Letter</FormLabel>
+                <br />
                 <FormControl>
                   <Textarea
                     placeholder="Tulis cover letter lamaran Anda..."
@@ -128,7 +129,8 @@ const LamarForm = ({ userId, lowonganId, initialData, formEdit }: Props) => {
 
           {/* Upload Dokumen */}
           <div className="space-y-2">
-            <FormLabel>Upload Dokumen</FormLabel>
+            <FormLabel>Upload Portofolio / Project relevant</FormLabel>
+            <br />
             <Input
               type="file"
               accept=".pdf,.doc,.docx"
@@ -150,6 +152,7 @@ const LamarForm = ({ userId, lowonganId, initialData, formEdit }: Props) => {
           </Button>
         </form>
       </Form>
+      <br />
 
       {/* Alert Dialog */}
       <AlertDialog open={alertOpen} onOpenChange={setAlertOpen}>

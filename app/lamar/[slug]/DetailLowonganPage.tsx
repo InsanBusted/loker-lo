@@ -24,7 +24,7 @@ export default async function DetailLowonganPage({
   if (!lowongan) return notFound();
 
   return (
-    <div className="w-[80vw] mx-auto px-6 text-gray-800">
+    <div className="w-[80vw] mx-auto px-6 ">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* KIRI: Info Umum */}
         <div className="lg:col-span-1 bg-black shadow-xl rounded-2xl p-6 space-y-4 h-fit">
@@ -48,10 +48,8 @@ export default async function DetailLowonganPage({
           </div>
 
           <div className="bg-gray-100 text-gray-700 rounded-lg p-4 border text-sm">
-            <span className="font-medium ">Gaji:</span>{" "}
-            {lowongan.gaji}
+            <span className="font-medium ">Gaji:</span> {lowongan.gaji}
           </div>
-          
 
           <p className="text-xs text-white pt-4">
             Diposting pada:{" "}
@@ -63,19 +61,19 @@ export default async function DetailLowonganPage({
           </p>
         </div>
 
-        {/* KANAN: Detail Lowongan */}
-        <div className="lg:col-span-2 bg-black shadow-xl rounded-2xl p-6 space-y-6 text-base leading-relaxed">
-          <h2 className="text-lg font-semibold text-gray-300 mb-1">
-            Deskripsi Pekerjaan
+         {/* KANAN: Detail Lowongan */}
+        <div className="lg:col-span-2 bg-white shadow-xl rounded-2xl p-6 space-y-6 text-base leading-relaxed">
+          <h2 className="text-lg font-semibold text-gray-800 mb-1">
+            Deskripsi
           </h2>
           <p>{lowongan.deskripsi}</p>
 
           {lowongan.kualifikasi?.length > 0 && (
             <div>
-              <h2 className="text-lg font-semibold text-gray-300 mb-1">
+              <h2 className="text-lg font-semibold text-gray-800 mb-1">
                 Kualifikasi Pekerjaan
               </h2>
-              <ul className="list-decimal pl-6 space-y-1">
+              <ul className="list-disc pl-6 space-y-1">
                 {lowongan.kualifikasi.map((item, idx) => (
                   <li key={idx}>{item}</li>
                 ))}
@@ -85,7 +83,7 @@ export default async function DetailLowonganPage({
 
           {lowongan.tugasTanggungJawab?.length > 0 && (
             <div>
-              <h2 className="text-lg font-semibold text-gray-300 mb-1">
+              <h2 className="text-lg font-semibold text-gray-800 mb-1">
                 Tugas dan Tanggung Jawab
               </h2>
               <ol className="list-decimal pl-6 space-y-1">
@@ -98,10 +96,10 @@ export default async function DetailLowonganPage({
 
           {lowongan.kualifikasiTambahan?.length > 0 && (
             <div>
-              <h2 className="text-lg font-semibold text-gray-300 mb-1">
+              <h2 className="text-lg font-semibold text-gray-800 mb-1">
                 Kualifikasi Tambahan
               </h2>
-              <ul className="list-decimal pl-6 space-y-1">
+              <ul className="list-disc pl-6 space-y-1">
                 {lowongan.kualifikasiTambahan.map((item, idx) => (
                   <li key={idx}>{item}</li>
                 ))}

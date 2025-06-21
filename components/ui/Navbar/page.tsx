@@ -20,7 +20,6 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
   const pathname = usePathname();
   const { user } = useUser();
 
-
   const scrollHeader = () => {
     if (window.scrollY >= 20) {
       // Optional: styling logic on scroll
@@ -82,7 +81,7 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
                     setCloseTimeout(timeout);
                   }}
                 >
-                  <button className="text-[1.3rem] flex items-center gap-1 font-semibold text-black">
+                  <button className="text-[1.3rem] flex items-center gap-1 font-semibold text-white">
                     {link.title}
                     <svg
                       className="w-3 h-3 ml-1"
@@ -109,8 +108,8 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
                                 href={subLink.path}
                                 className={`block px-4 py-2 ${
                                   isSubActive
-                                    ? "bg-lokerlo/10 text-lokerlo font-semibold"
-                                    : "text-gray-700 hover:bg-gray-100"
+                                    ? "text-black font-semibold"
+                                    : " text-gray-700 hover:bg-gray-100"
                                 }`}
                               >
                                 {subLink.title}
@@ -133,7 +132,7 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
                 className={`text-[1.3rem] px-2 py-1 rounded ${
                   isActive
                     ? "text-lokerlo font-semibold"
-                    : "hover:bg-white hover:text-lokerlo font-semibold"
+                    : "hover:bg-white hover:text-black font-semibold"
                 }`}
               >
                 {link.title}
@@ -142,7 +141,7 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
           })}
 
           <SignedOut>
-            <Button className="font-semibold text-white">
+            <Button className="font-semibold text-black bg-white hover:bg-white/80">
               <Link href="/sign-up">Login</Link>
             </Button>
           </SignedOut>

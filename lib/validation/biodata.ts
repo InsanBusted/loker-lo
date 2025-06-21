@@ -85,7 +85,7 @@ export const BiodataSchema = z
       ctx.addIssue({
         path: ["documentUrl"],
         code: z.ZodIssueCode.custom,
-        message: "URL dokumen wajib diisi untuk mahasiswa dan alumni",
+        message: "Document Portofolio wajib diisi untuk mahasiswa dan alumni",
       });
     }
   });
@@ -174,7 +174,7 @@ export const editBiodataSchema = z
       ctx.addIssue({
         path: ["documentUrl"],
         code: z.ZodIssueCode.custom,
-        message: "URL dokumen wajib diisi untuk mahasiswa dan alumni",
+        message: "Document Portofolio wajib diisi untuk mahasiswa dan alumni",
       });
     }
 

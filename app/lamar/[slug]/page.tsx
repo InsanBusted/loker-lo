@@ -1,11 +1,12 @@
 import React from "react";
-import DetailLowonganPage from "./DetailLowonganPage";
 import LamarForm from "@/components/Lamar/LamarForm";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SignedOut } from "@clerk/nextjs";
+import Jumbotron from "@/components/Jumbotron/page";
+import DetailLowonganPage from "./DetailLowonganPage";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -37,12 +38,12 @@ const LamarLowongan = async ({ params }: Props) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <section className="pt-[10rem] mx-auto">
-        <h1 className="text-2xl font-bold">Lamar Lowongan</h1>
+    <div className="flex flex-col min-h-screen ">
+      <Jumbotron link="Lamar Lowongan" />
+      <section className="pt-[5rem] mx-auto">
         <DetailLowonganPage params={params} />
       </section>
-      <section>
+      <section className="py-[5rem]">
         <LamarForm userId={userId} lowonganId={lowongan.id} />
       </section>
     </div>

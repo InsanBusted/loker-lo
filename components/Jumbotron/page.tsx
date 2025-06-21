@@ -9,7 +9,7 @@ import {
 
 const Jumbotron = ({ link }: {link: string}) => {
   return (
-    <div className="w-[80vw] h-[25vh] m-auto pt-[7rem]">
+    <div className="w-[80vw] m-auto pt-[7rem]">
       <div className="w-full  bg-black flex items-center justify-center py-[10rem] rounded-2xl shadow-lg ">
         <Breadcrumb>
           <BreadcrumbList>

@@ -1,6 +1,10 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Hero3D from "./Hero3D";
 
-const Hero = () => {
+// Load Canvas only in client
+
+const HeroComponent = () => {
   return (
     <section className="w-full px-10 xl:pt-40 pt-35 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
@@ -13,20 +17,18 @@ const Hero = () => {
             Build rewarding relationships in the world&apos;s Work Marketplace.
             Your home for the work you want.
           </p>
+          <Button className="bg-black text-white text-sm px-7 py-5 rounded-lg cursor-pointer">
+            <Link href="/lowongan">Search Job</Link>
+          </Button>
         </div>
 
-        {/* Kanan: Gambar */}
-        <div className="relative w-full max-w-lg h-[400px] rounded-[40px] overflow-hidden">
-          <Image
-            src="/gambarhero.png"
-            alt="Hero"
-            fill
-            className="object-cover"
-          />
+        {/* Kanan: 3D Animasi */}
+        <div className="w-full max-w-md h-[400px] rounded-[40px] overflow-hidden shadow-lg">
+          <Hero3D />
         </div>
       </div>
     </section>
   );
 };
 
-export default Hero;
+export default HeroComponent;
