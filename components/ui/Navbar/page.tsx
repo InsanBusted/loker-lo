@@ -20,6 +20,7 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
   const pathname = usePathname();
   const { user } = useUser();
 
+
   const scrollHeader = () => {
     if (window.scrollY >= 20) {
       // Optional: styling logic on scroll
@@ -43,7 +44,7 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
       title: "Lowongan",
       subLinks: [
         { title: "Lowongan Umum", path: "/lowongan" },
-        ...(!perusahaanSlug
+        ...(user && !perusahaanSlug
           ? [
               {
                 title: "Kelola Lowongan",
@@ -51,7 +52,7 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
               },
             ]
           : []),
-        ...(perusahaanSlug
+        ...(user && perusahaanSlug
           ? [{ title: "Kelola Lowongan", path: `/lowongan-saya` }]
           : []),
       ],

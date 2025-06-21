@@ -47,9 +47,8 @@ export async function getUserBiodataSlug() {
   } catch (error) {
     console.error("Gagal mengambil slug biodata user:", error);
     return null;
-  } 
+  }
 }
-
 
 export async function getBiodata(slug: string) {
   try {

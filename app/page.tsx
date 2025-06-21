@@ -7,7 +7,7 @@ import { SignedOut } from "@clerk/nextjs";
 export default async function Home() {
   return (
     <div>
-      <main>
+      <main className="flex flex-col min-h-screen">
         <SplashScreen />
         <section className="h-[100vh]">
           <Hero />
@@ -16,7 +16,7 @@ export default async function Home() {
           <Service />
         </section>
         <SignedOut>
-          <section className="h-[50vh]">
+          <section className="h-[100vh]">
             <Jumbotron />
           </section>
         </SignedOut>
