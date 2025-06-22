@@ -39,7 +39,7 @@ const ClientHeader = ({ biodataSlug, perusahaanSlug }: NavProps) => {
           <Image
             src="/nav.png"
             alt="LokerLo Logo"
-            width={120}
+            width={80}
             height={50}
             priority
           />

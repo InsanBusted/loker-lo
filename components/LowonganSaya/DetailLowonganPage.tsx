@@ -74,6 +74,9 @@ export default async function DetailLowonganPage({
 
         {/* KANAN: Detail Lowongan */}
         <div className="lg:col-span-2 bg-white shadow-xl rounded-2xl p-6 space-y-6 text-base leading-relaxed">
+          <h2 className="text-lg font-semibold text-gray-800 mb-1">
+            Deskripsi Pekerjaan
+          </h2>
           <p>{lowongan.deskripsi}</p>
 
           {lowongan.kualifikasi?.length > 0 && (

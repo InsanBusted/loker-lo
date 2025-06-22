@@ -303,6 +303,12 @@ export async function DELETE(
       );
     }
 
+    await prisma.proposal.deleteMany({
+      where: {
+        lowonganId: id,
+      },
+    });
+
     await prisma.lowongan.delete({
       where: { id },
     });

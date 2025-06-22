@@ -25,7 +25,7 @@ const page = async ({ params }: Props) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="mb-[7rem]">
+      <section>
         <Jumbotron link="Detail Lowongan Saya" />
       </section>
       <section>
