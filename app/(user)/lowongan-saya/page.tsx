@@ -62,7 +62,7 @@ const DaftarLowongan = () => {
   }, []);
 
   return (
-    <div className="w-[80vw] h-[100vh] mx-auto px-4">
+    <div className="w-[80vw]  mx-auto px-4">
       <section>
         <Jumbotron link="daftar lowongan" />
       </section>

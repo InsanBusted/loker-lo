@@ -8,6 +8,7 @@ import { SignedOut } from "@clerk/nextjs";
 import Jumbotron from "@/components/Jumbotron/page";
 import DetailLowonganPage from "./DetailLowonganPage";
 import WithBiodataStatusGuard from "@/components/Auth/BiodataStatus";
+import PerusahaanRedirectAlert from "@/components/ui/PerusahaanLamar";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -38,11 +39,15 @@ const LamarLowongan = async ({ params }: Props) => {
 
   const biodata = await prisma.biodata.findFirst({
     where: { userId },
-    select: { status: true },
+    select: { status: true, kategori: true },
   });
 
   if (!lowongan) {
     return <p className="text-center mt-10">Lowongan tidak ditemukan.</p>;
+  }
+
+  if (biodata?.kategori === "perusahaan") {
+    return <PerusahaanRedirectAlert />;
   }
 
   return (

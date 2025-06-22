@@ -233,6 +233,9 @@ export default function BiodataForm({ skill, bidang, formEdit }: Props) {
       form.setValue("namaLengkap", "");
       form.setValue("documentUrl", "");
       form.setValue("documentPendukung", "");
+      form.setValue("status", "APPROVED");
+    } else {
+      form.setValue("status", "PENDING");
     }
   }, [kategori, form]);
 

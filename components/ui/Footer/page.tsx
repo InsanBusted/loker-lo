@@ -7,10 +7,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Section 1 - Brand */}
           <div>
-            <h1 className="text-xl font-bold mb-2">Bustech</h1>
+            <h1 className="text-xl font-bold mb-2">Lokerlo</h1>
             <p className="text-sm text-gray-300">
-              Busted Technology (Bustech) adalah penyedia layanan pembuatan
-              website profesional untuk kebutuhan bisnis Anda.
+              Platform ini dikembangkan khusus untuk menghubungkan mahasiswa dan
+              alumni STT Nurul Fikri dengan dunia industri. Melalui antarmuka
+              terintegrasi, kami menyatukan informasi lowongan kerja, program
+              magang, dan portofolio digital dalam satu tempat agar setiap
+              talenta STT NF dapat mempersiapkan karier sejak masa kuliah.
             </p>
           </div>
 
@@ -24,18 +27,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/layanan" className="hover:underline">
-                  Layanan
+                <Link href="/tentang" className="hover:underline">
+                  Tentang
                 </Link>
               </li>
               <li>
-                <Link href="/portfolio" className="hover:underline">
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link href="/kontak" className="hover:underline">
-                  Kontak
+                <Link href="/lowongan" className="hover:underline">
+                  Lowongan
                 </Link>
               </li>
             </ul>
@@ -45,7 +43,7 @@ const Footer = () => {
           <div>
             <h2 className="text-lg font-semibold mb-2">Kontak</h2>
             <p className="text-sm text-gray-300">Citayam, Depok, Indonesia</p>
-            <p className="text-sm text-gray-300">Email: info@bustech.site</p>
+            <p className="text-sm text-gray-300">Email: info@lokerlo.my.id</p>
             <p className="text-sm text-gray-300">WhatsApp: +62 896-3554-6721</p>
           </div>
         </div>
@@ -53,8 +51,7 @@ const Footer = () => {
         <hr className="my-4 border-gray-600" />
 
         <p className="text-center text-xs text-gray-400">
-          &copy; {new Date().getFullYear()} Busted Technology. All rights
-          reserved.
+          &copy; {new Date().getFullYear()} Loker-lo. All rights reserved.
         </p>
       </div>
     </div>

@@ -54,7 +54,6 @@ export default async function DetailLowonganPage({
             <span className="font-medium text-gray-700">Gaji:</span>{" "}
             {lowongan.gaji}
           </div>
-
           <Link href={`/lamar/${slug}`}>
             <Button className="w-full mt-4 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition text-sm font-medium cursor-pointer">
               Lamar Sekarang
