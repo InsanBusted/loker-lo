@@ -5,9 +5,9 @@ import { Building2 } from "lucide-react";
 export default async function DetailLowonganPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const lowongan = await prisma.lowongan.findUnique({
     where: { slug },
@@ -61,7 +61,7 @@ export default async function DetailLowonganPage({
           </p>
         </div>
 
-         {/* KANAN: Detail Lowongan */}
+        {/* KANAN: Detail Lowongan */}
         <div className="lg:col-span-2 bg-white shadow-xl rounded-2xl p-6 space-y-6 text-base leading-relaxed">
           <h2 className="text-lg font-semibold text-gray-800 mb-1">
             Deskripsi

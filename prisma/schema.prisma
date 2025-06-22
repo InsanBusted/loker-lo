@@ -46,7 +46,7 @@ model Biodata {
   namaLengkap      String?
   slug             String          @unique
   documentUrl      String?
-  documentPendukung      String?
+  documentPendukung String?
   imgProfile       String
   deskripsi        String
   kategori         KategoriEnum?

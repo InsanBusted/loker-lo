@@ -27,6 +27,7 @@ export default async function Page() {
             bidang: biodata.bidang.id,
             deskripsi: biodata.deskripsi,
             documentUrl: biodata.documentUrl || "",
+            documentPendukung: biodata.documentPendukung || "",
             imgProfile: biodata.imgProfile,
             namaLengkap: biodata.namaLengkap || "",
             namaPerusahaan: biodata.namaPerusahaan || "",

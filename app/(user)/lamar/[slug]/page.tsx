@@ -7,11 +7,15 @@ import Link from "next/link";
 import { SignedOut } from "@clerk/nextjs";
 import Jumbotron from "@/components/Jumbotron/page";
 import DetailLowonganPage from "./DetailLowonganPage";
+import WithBiodataStatusGuard from "@/components/Auth/BiodataStatus";
 
 type Props = { params: Promise<{ slug: string }> };
 
 const LamarLowongan = async ({ params }: Props) => {
   const { userId } = await auth();
+
+  const resolvedParams = await params;
+
   if (!userId) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
@@ -26,11 +30,15 @@ const LamarLowongan = async ({ params }: Props) => {
       </div>
     );
   }
-  const resolvedParams = await params;
 
   const lowongan = await prisma.lowongan.findUnique({
     where: { slug: resolvedParams.slug },
     select: { id: true },
+  });
+
+  const biodata = await prisma.biodata.findFirst({
+    where: { userId },
+    select: { status: true },
   });
 
   if (!lowongan) {
@@ -38,15 +46,17 @@ const LamarLowongan = async ({ params }: Props) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen ">
-      <Jumbotron link="Lamar Lowongan" />
-      <section className="pt-[5rem] mx-auto">
-        <DetailLowonganPage params={params} />
-      </section>
-      <section className="py-[5rem]">
-        <LamarForm userId={userId} lowonganId={lowongan.id} />
-      </section>
-    </div>
+    <WithBiodataStatusGuard status={biodata?.status}>
+      <div className="flex flex-col min-h-screen">
+        <Jumbotron link="Lamar Lowongan" />
+        <section className="pt-[5rem] mx-auto">
+          <DetailLowonganPage params={resolvedParams} />
+        </section>
+        <section className="py-[5rem]">
+          <LamarForm userId={userId} lowonganId={lowongan.id} />
+        </section>
+      </div>
+    </WithBiodataStatusGuard>
   );
 };
 

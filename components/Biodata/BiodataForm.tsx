@@ -165,7 +165,7 @@ export default function BiodataForm({ skill, bidang, formEdit }: Props) {
         .from("lokerlo")
         .getPublicUrl(data.path);
 
-      form.setValue("imgProfile", publicData.publicUrl);
+      form.setValue("documentPendukung", publicData.publicUrl);
     } catch (error) {
       console.error("Upload error:", error);
       alert("Gagal upload gambar");
@@ -232,6 +232,7 @@ export default function BiodataForm({ skill, bidang, formEdit }: Props) {
     if (kategori === "perusahaan") {
       form.setValue("namaLengkap", "");
       form.setValue("documentUrl", "");
+      form.setValue("documentPendukung", "");
     }
   }, [kategori, form]);
 
@@ -473,6 +474,8 @@ export default function BiodataForm({ skill, bidang, formEdit }: Props) {
                     </FormItem>
                   )}
                 />
+
+                <input type="hidden" {...form.register("documentPendukung")} />
                 <FormField
                   control={form.control}
                   name="documentPendukung"
@@ -537,18 +540,6 @@ export default function BiodataForm({ skill, bidang, formEdit }: Props) {
             >
               Oke
             </AlertDialogCancel>
-
-            {state.success && (
-              <Button
-                onClick={() => {
-                  router.refresh();
-                  form.reset();
-                  setAlertOpen(false);
-                }}
-              >
-                Oke
-              </Button>
-            )}
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
