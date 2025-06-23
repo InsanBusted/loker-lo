@@ -11,7 +11,6 @@ export default function SignInPage() {
       <SignIn
         appearance={{ variables: { colorPrimary: "#0F172A" } }}
         signUpUrl="/sign-up"
-        afterSignInUrl="/admin"
       />
     </div>
   );
