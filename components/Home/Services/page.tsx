@@ -1,15 +1,16 @@
 import Card from "./Card/page";
 
-const Service = () => {
+const Layanan = () => {
   return (
-    <div className="flex flex-col items-center justify-center pt-[18rem] xl:pt-1 ">
-      <h1 className="font-bold text-5xl">Explore the different ways to earn</h1>
-
-      <div className="mt-10 ">
-        <Card/>
+    <div className="flex flex-col items-center justify-center pt-14  w-[95vw] mx-auto xl:pt-1">
+      <h1 className="font-bold xl:text-5xl text-2xl">
+        Jelajahi Berbagai Cara untuk Menghasilkan Uang
+      </h1>
+      <div>
+        <Card />
       </div>
     </div>
   );
 };
 
-export default Service;
+export default Layanan;

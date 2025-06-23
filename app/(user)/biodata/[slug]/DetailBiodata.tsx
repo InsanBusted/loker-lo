@@ -30,8 +30,8 @@ const DetailBiodata = async ({
   if (!biodata) return notFound();
 
   return (
-    <div className="w-[80vw] mx-auto pt-[10rem]">
-      <div className="grid md:grid-cols-3  gap-10 p-6">
+    <div className="xl:w-[80vw]  mx-auto pt-[5rem]">
+      <div className="grid md:grid-cols-3 gap-10 p-6">
         {/* Kiri: Profil */}
         <div className="col-span-2">
           <div className="flex gap-6 items-start">
@@ -43,7 +43,7 @@ const DetailBiodata = async ({
               className="rounded-full object-cover border"
             />
             <div>
-              <h1 className="text-3xl font-bold">{biodata.namaLengkap}</h1>
+              <h1 className="xl:text-3xl font-bold">{biodata.namaLengkap}</h1>
               <h1 className="text-3xl font-bold">{biodata.namaPerusahaan}</h1>
               <p className="text-muted-foreground text-sm capitalize">
                 Kategori: {biodata.kategori}{" "}
@@ -94,19 +94,21 @@ const DetailBiodata = async ({
             <div>
               <h2 className="text-xl font-semibold mb-[2rem]">Skills</h2>
               {biodata.skills.length > 0 ? (
-                <div className="grid grid-cols-3 xl:grid-cols-4 xl:gap-5 gap-[4rem]">
-                  <TooltipProvider>
-                    {biodata.skills.map((skill) => (
-                      <Tooltip key={skill.id}>
-                        <TooltipTrigger className="px-3 py-2 bg-muted rounded-md flex justify-center items-center text-sm font-medium hover:bg-primary hover:text-white transition-all">
-                          {skill.nama}
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{skill.nama}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </TooltipProvider>
+                <div className="flex justify-center">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <TooltipProvider>
+                      {biodata.skills.map((skill) => (
+                        <Tooltip key={skill.id}>
+                          <TooltipTrigger className="px-3 py-2 bg-muted rounded-md flex justify-center items-center text-sm font-medium hover:bg-primary hover:text-white transition-all">
+                            {skill.nama}
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{skill.nama}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      ))}
+                    </TooltipProvider>
+                  </div>
                 </div>
               ) : (
                 <p className="text-sm text-muted-foreground">

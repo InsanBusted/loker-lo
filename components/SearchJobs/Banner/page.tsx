@@ -1,8 +1,8 @@
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const Banner = () => {
   return (
-    <div className="py-20 mt-[10rem] bg-gray-50 text-center">
+    <div className="py-20 mt-[10rem] bg-gray-100 text-center">
       <h2 className="text-3xl font-semibold mb-4">
         Temukan pekerjaan impianmu 🎯
       </h2>
@@ -21,17 +21,14 @@ const Banner = () => {
           "Cybersecurity",
           "Mobile App",
         ].map((category) => (
-          <Link
+          <Button
             key={category}
-            href={`/search?q=${encodeURIComponent(category)}`}
-            className="px-4 py-2 bg-white border border-gray-300 rounded-full hover:bg-blue-100 transition text-sm"
+            className="px-4 py-2rounded-full transition text-sm"
           >
             {category}
-          </Link>
+          </Button>
         ))}
       </div>
-
-     
     </div>
   );
 };

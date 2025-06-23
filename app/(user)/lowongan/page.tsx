@@ -9,11 +9,9 @@ const Search = () => {
         <section>
           <Hero />
         </section>
-
         <section>
           <Banner />
         </section>
-
         {/* ExploreJobs section (berisi pencarian dinamis) */}
         <section className="mb-[5rem] w-[80vw] m-auto">
           <ExploreJobs />

@@ -40,10 +40,10 @@ export default function LokerLo({ hasBiodata, userId, role }: Props) {
         <section className="h-[80vh]">
           <Service />
         </section>
-        <section className="h-[100vh]">
+        <section >
           <Jumbotron />
         </section>
-        <section className="h-[100vh] xl:h-[0]"></section>
+        <section className="h-[10vh] xl:h-[0]"></section>
       </main>
 
       <AlertDialog open={open} onOpenChange={setOpen}>

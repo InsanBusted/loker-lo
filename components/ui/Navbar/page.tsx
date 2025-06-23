@@ -150,7 +150,7 @@ const Nav = ({ biodataSlug, perusahaanSlug }: NavProps) => {
             <div className="ml-4 flex items-center gap-2">
               <UserButton afterSignOutUrl="/" />
               {user?.fullName && (
-                <span className="text-black font-semibold text-[1rem]">
+                <span className="text-white font-semibold text-[1rem]">
                   {user.username}
                 </span>
               )}

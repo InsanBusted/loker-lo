@@ -1,4 +1,5 @@
-import Spline from "@splinetool/react-spline/next";
+import Hero3D from "@/components/SearchJobs/Hero/Hero3D";
+
 const Detail = () => {
   return (
     <section className="w-[80vw] m-auto bg-white ">
@@ -31,10 +32,6 @@ const Detail = () => {
               sertifikasi, dan pengalaman.
             </li>
             <li>
-              Fitur mentoring &amp; kolaborasi supaya mahasiswa bisa belajar
-              langsung dari alumni.
-            </li>
-            <li>
               Dasbor admin untuk memastikan data pengguna dan lowongan tetap
               valid serta aman.
             </li>
@@ -48,8 +45,8 @@ const Detail = () => {
         </div>
 
         {/* Animasi 3D dari Spline */}
-        <div className="flex-1 h-[300px] md:h-[400px]">
-          <Spline scene="https://prod.spline.design/WEEt7XZpsE8luYNk/scene.splinecode" />
+        <div className="flex-1 h-[300px] md:h-[400px] hidden xl:block">
+          <Hero3D />
         </div>
       </div>
     </section>

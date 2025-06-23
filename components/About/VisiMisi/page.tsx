@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const VisiMisi = () => {
   return (
-    <section className="w-[80vw] m-auto bg-white">
+    <section className="w-[80vw] xl:mt-0 mt-[20rem] mb-[50rem] m-auto bg-white">
       <div className="w-full p-8 mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Teks Kiri */}
         <div className="flex-1">
@@ -10,20 +10,33 @@ const VisiMisi = () => {
             Visi & Misi Kami
           </h1>
           <p className="text-black leading-relaxed text-justify mb-4">
-            <strong>Visi kami</strong> adalah menjadi platform koneksi utama antara mahasiswa dan alumni STT Nurul Fikri untuk membuka peluang karier yang lebih luas, mempererat kolaborasi, serta mendukung pengembangan potensi profesional sejak di bangku kuliah.
+            <strong>Visi kami</strong> adalah menjadi platform koneksi utama
+            antara mahasiswa dan alumni STT Nurul Fikri dengan industri untuk
+            membuka peluang karier yang lebih luas, mempererat kolaborasi, serta
+            mendukung pengembangan potensi profesional sejak di bangku kuliah.
           </p>
           <p className="text-black leading-relaxed text-justify mb-4">
             <strong>Misi kami</strong> meliputi:
           </p>
           <ul className="list-disc list-inside text-black mb-4">
-            <li>Menyediakan platform terintegrasi yang menampilkan informasi lowongan kerja dan magang secara terpusat.</li>
-            <li>Memfasilitasi mahasiswa dalam membangun portofolio digital yang menarik dan profesional.</li>
-            <li>Membuka ruang kolaborasi dan mentoring antara mahasiswa dan alumni untuk saling berbagi wawasan dan pengalaman karier.</li>
-            <li>Memperkuat jejaring profesional antara civitas akademika STT Nurul Fikri dan dunia industri yang telah bekerjasama.</li>
-            <li>Mendorong keterlibatan aktif alumni dalam pengembangan karier mahasiswa melalui partisipasi dalam kegiatan platform.</li>
+            <li>
+              Menyediakan platform terintegrasi yang menampilkan informasi
+              lowongan kerja dan magang secara terpusat.
+            </li>
+            <li>
+              Membuka ruang kolaborasi dan mentoring antara mahasiswa dan alumni
+              untuk saling berbagi wawasan dan pengalaman karier.
+            </li>
+            <li>
+              Memperkuat jejaring profesional antara civitas akademika STT Nurul
+              Fikri dan dunia industri yang telah bekerjasama.
+            </li>
           </ul>
           <p className="text-black leading-relaxed text-justify">
-            Kami percaya bahwa dengan koneksi yang kuat antara mahasiswa, alumni, dan dunia industri, STT Nurul Fikri dapat menciptakan ekosistem karier yang mendukung pertumbuhan dan kesiapan profesional lulusan secara berkelanjutan.
+            Kami percaya bahwa dengan koneksi yang kuat antara mahasiswa,
+            alumni, dan dunia industri, STT Nurul Fikri dapat menciptakan
+            ekosistem karier yang mendukung pertumbuhan dan kesiapan profesional
+            lulusan secara berkelanjutan.
           </p>
         </div>
 

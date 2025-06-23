@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const Jumbotron = () => {
   return (
-    <div className="flex justify-center  min-h-screen px-4 md:pt-[5rem] xl:pt-[13rem] pt-[55rem]  md:px-8">
-      <div className="px-4 md:px-8 py-10">
+    <div className="flex justify-center mb-14 px-4 md:pt-[5rem] xl:pt-[13rem] pt-[35rem]  md:px-8">
+      <div className="px-4 md:px-8">
         <div className="max-w-5xl w-full bg-[#f9f9f9] rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-lg transform transition duration-300 ease-in-out hover:-translate-y-1">
           {/* Left Content */}
           <div className="flex-1 text-center md:text-left space-y-4">

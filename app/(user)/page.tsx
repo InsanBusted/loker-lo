@@ -12,7 +12,7 @@ export default async function Home() {
         <section className="h-[100vh]">
           <Hero />
         </section>
-        <section className="xl:h-[80vh] h-[100vh]">
+        <section className="xl:h-[80vh] h-[100vh] xl:w-full w-[95vw] mx-auto">
           <Service />
         </section>
         <section className="h-[100vh]">

@@ -33,7 +33,7 @@ const page = async ({ params }: Props) => {
         <section className="mb-[7rem]">
           <Jumbotron link="Detail Proposal Saya" />
         </section>
-        <section className="w-[80vw] mx-auto pt-[10rem] pb-[10rem]">
+        <section className="w-[80vw] mx-auto pb-[10rem]">
           <h2 className="text-xl font-semibold mb-4">
             Lamaran yang Kamu Kirim
           </h2>

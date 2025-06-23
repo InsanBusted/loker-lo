@@ -3,6 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const biodata = await prisma.biodata.findMany({
+    orderBy: {
+      updatedAt: "desc",
+    },
     select: {
       id: true,
       namaLengkap: true,

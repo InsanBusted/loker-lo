@@ -4,28 +4,28 @@ import React from "react";
 const data = [
   {
     src: "/profile.svg",
-    title: "1. Create a profile",
-    desc: "Highlight your skills and experience, show your portfolio, and set your ideal pay rate.",
+    title: "1. Buat Profil",
+    desc: "Tampilkan keahlian dan pengalamanmu, perlihatkan portofolio, dan tentukan tarif idealmu.",
   },
   {
     src: "/searchjob.png",
-    title: "2. Search for jobs",
-    desc: "Search on Talent Marketplace™ for the hourly or fixed-price work you're looking for.",
+    title: "2. Cari Pekerjaan",
+    desc: "Cari pekerjaan per jam atau harga tetap di Talent Marketplace™ yang sesuai denganmu.",
   },
   {
     src: "/proposal.png",
-    title: "3. Submit a proposal",
-    desc: "Set your rate and tell clients why you're the right person for the job!",
+    title: "3. Kirim Proposal",
+    desc: "Tentukan tarifmu dan jelaskan kepada klien mengapa kamu orang yang tepat untuk pekerjaan itu!",
   },
   {
     src: "/contact.png",
-    title: "4. Get contract",
-    desc: "If the client likes your proposal they'll send you a contract to begin working.",
+    title: "4. Dapatkan Kontrak",
+    desc: "Jika klien menyukai proposalmu, mereka akan mengirimkan kontrak untuk memulai pekerjaan.",
   },
   {
     src: "/work.png",
-    title: "5. Complete the work",
-    desc: "Check steps off as you finish and work with your client if you have questions.",
+    title: "5. Selesaikan Pekerjaan",
+    desc: "Centang setiap langkah saat kamu menyelesaikannya dan komunikasikan dengan klien jika ada pertanyaan.",
   },
 ];
 
@@ -33,7 +33,7 @@ const Card = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:px-[20rem] w-full">
       {data.map((item, index) => (
-        <div key={index} className="flex flex-row md:flex-col gap-4 p-4 ">
+        <div key={index} className="flex flex-row md:flex-col gap-4 p-4">
           <div className="relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] shrink-0">
             <Image
               src={item.src}
