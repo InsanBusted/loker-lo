@@ -4,6 +4,7 @@ import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header/page";
 import Footer from "@/components/ui/Footer/page";
+import AIChatButton from "@/components/Chat/AIChatButton";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -39,6 +40,7 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col">
             <Header />
             <div className="mt-[3rem]">{children}</div>
+            <AIChatButton />
             <Footer />
           </div>
         </body>

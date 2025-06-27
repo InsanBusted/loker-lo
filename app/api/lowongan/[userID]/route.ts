@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 import slugify from "slugify";
+import { getEmbedding } from "@/lib/embedding";
+import { lowonganIndex } from "@/lib/db/pinecone";
 
 // Validasi schema untuk Lowongan dengan tambahan 3 array optional
 const LowonganSchema = z.object({
@@ -148,6 +150,37 @@ export async function POST(
       },
     });
 
+    const combinedText = [
+      parse.data.namaLowongan,
+      parse.data.deskripsi,
+      parse.data.kualifikasi?.join(", "),
+      parse.data.tugasTanggungJawab?.join(", "),
+      parse.data.kualifikasiTambahan?.join(", "),
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const vector = await getEmbedding(combinedText);
+
+    await lowonganIndex.upsert([
+      {
+        id: newLowongan.id,
+        values: vector,
+        metadata: {
+          namaLowongan: newLowongan.namaLowongan,
+          namaPerusahaan: newLowongan.namaPerusahaan,
+          pageContent: [
+            `Lowongan: ${newLowongan.namaLowongan}`,
+            `Perusahaan: ${newLowongan.namaPerusahaan}`,
+            `Deskripsi: ${newLowongan.deskripsi}`,
+            `Kualifikasi: ${newLowongan.kualifikasi?.join(", ") || "-"}`,
+            `Tugas: ${newLowongan.tugasTanggungJawab?.join(", ") || "-"}`,
+            `Tambahan: ${newLowongan.kualifikasiTambahan?.join(", ") || "-"}`,
+          ].join("\n"),
+        },
+      },
+    ]);
+
     return NextResponse.json(newLowongan, { status: 201 });
   } catch (error) {
     console.error("API POST Error:", error);
@@ -247,6 +280,41 @@ export async function PUT(
         updatedAt: new Date(),
       },
     });
+
+    const combinedText = [
+      updated.namaLowongan,
+      updated.deskripsi,
+      updated.kualifikasi?.join(", "),
+      updated.tugasTanggungJawab?.join(", "),
+      updated.kualifikasiTambahan?.join(", "),
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const vector = await getEmbedding(combinedText);
+
+    // Hapus data lama
+    await lowonganIndex.deleteOne(updated.id);
+
+    // Masukkan ulang dengan data baru
+    await lowonganIndex.upsert([
+      {
+        id: updated.id,
+        values: vector,
+        metadata: {
+          namaLowongan: updated.namaLowongan,
+          namaPerusahaan: updated.namaPerusahaan,
+          pageContent: [
+            `Lowongan: ${updated.namaLowongan}`,
+            `Perusahaan: ${updated.namaPerusahaan}`,
+            `Deskripsi: ${updated.deskripsi}`,
+            `Kualifikasi: ${updated.kualifikasi?.join(", ") || "-"}`,
+            `Tugas: ${updated.tugasTanggungJawab?.join(", ") || "-"}`,
+            `Tambahan: ${updated.kualifikasiTambahan?.join(", ") || "-"}`,
+          ].join("\n"),
+        },
+      },
+    ]);
 
     return NextResponse.json(updated, { status: 200 });
   } catch (error) {

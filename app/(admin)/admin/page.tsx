@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 export default async function Page() {
   const { role } = await getUserBiodataStatus();
 
-  // Redirect ke /admin jika role adalah ADMIN
   if (role !== "ADMIN") {
     redirect("/loker-lo");
   }

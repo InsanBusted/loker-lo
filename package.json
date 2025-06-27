@@ -6,14 +6,17 @@
     "dev": "next dev --turbopack",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "import-informasi": "tsx app/scripts/importInformasiToPinecone.ts"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^1.3.22",
     "@clerk/nextjs": "^6.20.1",
     "@hookform/resolvers": "^5.1.0",
+    "@pinecone-database/pinecone": "^6.1.1",
     "@prisma/client": "^6.10.0",
     "@prisma/extension-accelerate": "^2.0.1",
     "@radix-ui/react-alert-dialog": "^1.1.14",
@@ -32,6 +35,7 @@
     "@splinetool/react-spline": "^4.0.0",
     "@supabase/supabase-js": "^2.50.0",
     "@tabler/icons-react": "^3.34.0",
+    "ai": "^3.4.33",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -40,6 +44,7 @@
     "nanoid": "^5.1.5",
     "next": "15.3.2",
     "next-themes": "^0.4.6",
+    "openai": "^4.104.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.57.0",
@@ -62,6 +67,7 @@
     "prisma": "^6.10.0",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "tw-animate-css": "^1.3.0",
     "typescript": "^5.8.3"
   }
